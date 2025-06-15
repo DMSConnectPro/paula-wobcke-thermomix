@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,30 +23,27 @@ const Contact = () => {
     setIsSubmitting(true)
 
     try {
-      // Send email using Web3Forms (free service)
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: 'YOUR_ACCESS_KEY_HERE', // You need to get this from https://web3forms.com
-          to_email: 'paula.wobcke@outlook.com',
-          subject: 'New Thermomix Demo Request',
-          from_name: formData.name,
-          reply_to: formData.email,
-          message: `
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
+      // Get EmailJS configuration from environment variables
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_xxxxxxx'
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_xxxxxxx'
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'xxxxxxxxxxxxxxx'
 
-Message:
-${formData.message}
-          `.trim()
-        })
-      })
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        to_email: 'paula.wobcke@outlook.com'
+      }
 
-      if (response.ok) {
+      const response = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      )
+
+      if (response.status === 200) {
         // Show thank you message
         setShowThankYou(true)
         
