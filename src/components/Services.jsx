@@ -54,7 +54,7 @@ const Services = () => {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto">
           <div className="p-8">
             <h3 className="text-2xl font-bold mb-6 text-center text-text-dark">
-              One Machine, Endless Possibilities
+              One Thermomix, Endless Possibilities
             </h3>
             <div className="grid md:grid-cols-3 gap-4 text-center mb-8">
               <div className="p-4">
