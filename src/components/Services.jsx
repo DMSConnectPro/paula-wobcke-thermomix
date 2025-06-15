@@ -50,11 +50,11 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Thermomix Features */}
+        {/* Thermomix® Features */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto">
           <div className="p-8">
             <h3 className="text-2xl font-bold mb-6 text-center text-text-dark">
-              One Thermomix, Endless Possibilities
+              One Thermomix®, Endless Possibilities
             </h3>
             <div className="grid md:grid-cols-3 gap-4 text-center mb-8">
               <div className="p-4">
@@ -76,7 +76,7 @@ const Services = () => {
           <div className="relative h-64 md:h-96">
             <img 
               src={varomaImage} 
-              alt="Thermomix Varoma Steaming" 
+              alt="Thermomix® Varoma Steaming" 
               className="w-full h-full object-cover"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">

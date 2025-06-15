@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="flex justify-center space-x-6 py-4">
             <a href="#home" className="hover:text-primary-green transition-colors">Home</a>
             <a href="#about" className="hover:text-primary-green transition-colors">About</a>
-            <a href="#thermomix" className="hover:text-primary-green transition-colors">Thermomix</a>
+            <a href="#thermomix" className="hover:text-primary-green transition-colors">Thermomix®</a>
             <a href="#contact" className="hover:text-primary-green transition-colors">Contact</a>
           </div>
         </div>

@@ -19,8 +19,11 @@ const Hero = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-delay">
             <span className="text-primary-green">Thermomix® TM7</span>
           </h1>
+          <p className="text-lg md:text-xl mb-2 animate-fade-in-delay-2">
+            Experience the future of cooking with Paula Wöbcke.
+          </p>
           <p className="text-lg md:text-xl mb-8 animate-fade-in-delay-2">
-            Experience the future of cooking with Paula Wöbcke, your Independent Thermomix® Diamond Team Leader
+            Your Independent Thermomix® Diamond Team Leader
           </p>
           
           {/* CTA Buttons */}
