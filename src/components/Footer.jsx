@@ -26,7 +26,7 @@ const Footer = () => {
             Thermomix® is a registered trademark of Vorwerk UK Limited.
           </p>
           <p className="mt-2 text-primary-green font-semibold">
-            © 2024 Paula Wöbcke. All rights reserved.
+            © 2025 Paula Wöbcke. All rights reserved.
           </p>
         </div>
       </div>
