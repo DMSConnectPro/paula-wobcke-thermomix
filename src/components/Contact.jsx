@@ -23,10 +23,17 @@ const Contact = () => {
     setIsSubmitting(true)
 
     try {
-      // Get EmailJS configuration from environment variables
-      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_xxxxxxx'
-      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_xxxxxxx'
-      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'xxxxxxxxxxxxxxx'
+      // Get EmailJS configuration
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_96vaqcl'
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_l738wmq'
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'EOx611ifodh1iMCJg'
+
+      // Debug: Log the configuration (remove in production)
+      console.log('EmailJS Config:', {
+        SERVICE_ID,
+        TEMPLATE_ID,
+        PUBLIC_KEY: PUBLIC_KEY.substring(0, 5) + '...' // Only show first 5 chars for security
+      })
 
       const templateParams = {
         from_name: formData.name,
@@ -36,12 +43,16 @@ const Contact = () => {
         to_email: 'paula.wobcke@outlook.com'
       }
 
+      console.log('Sending email with params:', templateParams)
+
       const response = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         templateParams,
         PUBLIC_KEY
       )
+
+      console.log('EmailJS Response:', response)
 
       if (response.status === 200) {
         // Show thank you message
@@ -65,6 +76,11 @@ const Contact = () => {
       
     } catch (error) {
       console.error('Error sending form:', error)
+      console.error('Error details:', {
+        message: error.message,
+        text: error.text,
+        status: error.status
+      })
       alert('Sorry, there was an error sending your message. Please contact me directly at paula.wobcke@outlook.com')
     } finally {
       setIsSubmitting(false)
