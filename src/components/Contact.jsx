@@ -1,4 +1,78 @@
+import { useState } from 'react'
+
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showThankYou, setShowThankYou] = useState(false)
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      // Send email using Web3Forms (free service)
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'YOUR_ACCESS_KEY_HERE', // You need to get this from https://web3forms.com
+          to_email: 'paula.wobcke@outlook.com',
+          subject: 'New Thermomix Demo Request',
+          from_name: formData.name,
+          reply_to: formData.email,
+          message: `
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+
+Message:
+${formData.message}
+          `.trim()
+        })
+      })
+
+      if (response.ok) {
+        // Show thank you message
+        setShowThankYou(true)
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        })
+        
+        // Hide thank you message after 5 seconds
+        setTimeout(() => {
+          setShowThankYou(false)
+        }, 5000)
+      } else {
+        throw new Error('Failed to send email')
+      }
+      
+    } catch (error) {
+      console.error('Error sending form:', error)
+      alert('Sorry, there was an error sending your message. Please contact me directly at paula.wobcke@outlook.com')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="contact" className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -12,36 +86,69 @@ const Contact = () => {
           </p>
 
           <div className="bg-bg-light rounded-lg p-8">
-            <form className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-green focus:outline-none"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-green focus:outline-none"
-                />
+            {showThankYou ? (
+              <div className="py-12 px-4">
+                <div className="text-4xl mb-4">✅</div>
+                <h3 className="text-2xl font-bold text-primary-green mb-4">
+                  Thank You for Your Interest!
+                </h3>
+                <p className="text-text-gray">
+                  We've received your request and will get back to you as soon as possible 
+                  to assist you with your personal demo of the Thermomix® TM7.
+                </p>
               </div>
-              <input
-                type="tel"
-                placeholder="Your Phone Number"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-green focus:outline-none"
-              />
-              <textarea
-                placeholder="Tell me about your cooking needs and preferred demo time"
-                rows="4"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-green focus:outline-none resize-none"
-              ></textarea>
-              <button
-                type="submit"
-                className="w-full bg-primary-green text-white py-4 rounded-full font-semibold hover:bg-dark-green transition-colors"
-              >
-                Book Your Free Demo
-              </button>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your Name"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-green focus:outline-none"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Your Email"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-green focus:outline-none"
+                  />
+                </div>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Your Phone Number"
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-green focus:outline-none"
+                />
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your cooking needs and preferred demo time"
+                  rows="4"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-green focus:outline-none resize-none"
+                ></textarea>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-4 rounded-full font-semibold transition-colors ${
+                    isSubmitting 
+                      ? 'bg-gray-400 text-gray-200 cursor-not-allowed' 
+                      : 'bg-primary-green text-white hover:bg-dark-green'
+                  }`}
+                >
+                  {isSubmitting ? 'Sending...' : 'Book Your Free Demo'}
+                </button>
+              </form>
+            )}
           </div>
 
           <div className="mt-12 space-y-4">
