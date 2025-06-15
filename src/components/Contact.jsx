@@ -39,8 +39,7 @@ const Contact = () => {
         from_name: formData.name,
         from_email: formData.email,
         phone: formData.phone,
-        message: formData.message,
-        to_email: 'paula.wobcke@outlook.com'
+        message: formData.message
       }
 
       console.log('Sending email with params:', templateParams)
