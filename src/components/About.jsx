@@ -1,6 +1,29 @@
 import paulaPhoto from '../assets/images/Paula.jpeg'
 
 const About = () => {
+  const advisorBenefits = [
+    {
+      title: "Personal Demonstrations",
+      description: "Experience Thermomix® in your own home with a personalized cooking demonstration",
+      icon: "🏠"
+    },
+    {
+      title: "Ongoing Support",
+      description: "Continuous guidance and recipe support to help you master your Thermomix®",
+      icon: "💚"
+    },
+    {
+      title: "Recipe Workshops",
+      description: "Join group workshops and learn new techniques with fellow Thermomix® owners",
+      icon: "👥"
+    },
+    {
+      title: "Business Opportunities",
+      description: "Discover how you can become a Thermomix® advisor and build your own business",
+      icon: "💼"
+    }
+  ]
+
   return (
     <section id="about" className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -9,7 +32,7 @@ const About = () => {
             About Paula Wöbcke
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-center mb-16">
             {/* Paula's Photo */}
             <div className="rounded-lg overflow-hidden shadow-lg">
               <img 
@@ -40,6 +63,25 @@ const About = () => {
                   Get in Touch
                 </a>
               </div>
+            </div>
+          </div>
+
+          {/* Why Choose Paula as Your Advisor */}
+          <div className="mt-16">
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-text-dark">
+              Why Choose Paula as Your Advisor?
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {advisorBenefits.map((benefit, index) => (
+                <div 
+                  key={index}
+                  className="bg-bg-light p-6 rounded-lg hover:shadow-md transition-shadow"
+                >
+                  <div className="text-4xl mb-4">{benefit.icon}</div>
+                  <h4 className="text-xl font-semibold mb-2 text-text-dark">{benefit.title}</h4>
+                  <p className="text-text-gray">{benefit.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -1,26 +1,36 @@
 import varomaImage from '../assets/images/varoma.jpg'
 
 const Services = () => {
-  const services = [
+  const thermomixBenefits = [
     {
-      title: "Personal Demonstrations",
-      description: "Experience Thermomix® in your own home with a personalized cooking demonstration",
-      icon: "🏠"
+      title: "All-in-One Kitchen Solution",
+      description: "Replace 20+ appliances with one compact device that weighs, chops, mixes, emulsifies, steams, cooks, and more",
+      icon: "🔧"
     },
     {
-      title: "Ongoing Support",
-      description: "Continuous guidance and recipe support to help you master your Thermomix®",
-      icon: "💚"
+      title: "Save Time & Money",
+      description: "Cut cooking time by 50% and reduce food waste with precise measurements and guided cooking",
+      icon: "⏰"
     },
     {
-      title: "Recipe Workshops",
-      description: "Join group workshops and learn new techniques with fellow Thermomix® owners",
-      icon: "👥"
+      title: "Healthier Eating",
+      description: "Cook from scratch with fresh ingredients, control what goes into your food, and preserve nutrients with gentle cooking",
+      icon: "🥗"
     },
     {
-      title: "Business Opportunities",
-      description: "Discover how you can become a Thermomix® advisor and build your own business",
-      icon: "💼"
+      title: "Perfect Results Every Time",
+      description: "Guided recipes ensure consistent results, whether you're a beginner or experienced cook",
+      icon: "⭐"
+    },
+    {
+      title: "Family Friendly",
+      description: "Make everything from baby food to gourmet dinners, accommodate allergies and preferences easily",
+      icon: "👨‍👩‍👧‍👦"
+    },
+    {
+      title: "Smart Technology",
+      description: "WiFi-enabled with 100,000+ recipes on Cookidoo®, weekly meal planning, and shopping lists",
+      icon: "📱"
     }
   ]
 
@@ -37,15 +47,15 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {services.map((service, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {thermomixBenefits.map((benefit, index) => (
             <div 
               key={index}
               className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
             >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 text-text-dark">{service.title}</h3>
-              <p className="text-text-gray">{service.description}</p>
+              <div className="text-4xl mb-4">{benefit.icon}</div>
+              <h3 className="text-xl font-semibold mb-2 text-text-dark">{benefit.title}</h3>
+              <p className="text-text-gray">{benefit.description}</p>
             </div>
           ))}
         </div>
