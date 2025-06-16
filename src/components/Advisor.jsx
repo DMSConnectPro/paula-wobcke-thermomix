@@ -190,7 +190,7 @@ const Advisor = () => {
                 
                 <div>
                   <label className="block text-sm font-medium text-text-dark mb-2">
-                    Total Sales per Month: {salesPerDemo}
+                    Sales per Demo: {salesPerDemo}
                   </label>
                   <input
                     type="range"
