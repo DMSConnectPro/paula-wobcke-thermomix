@@ -69,7 +69,7 @@ const About = () => {
           {/* Why Choose Paula as Your Advisor */}
           <div className="mt-16">
             <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-text-dark">
-              Why Choose Paula as Your Advisor?
+              The Benefits of Choosing Paula as Your Thermomix® Advisor
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {advisorBenefits.map((benefit, index) => (
