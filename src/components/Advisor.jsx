@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const Advisor = () => {
   const [demos, setDemos] = useState(8)
-  const [salesPerDemo, setSalesPerDemo] = useState(1.5)
+  const [salesPerDemo, setSalesPerDemo] = useState(2)
   
   // Calculate earnings - £150 commission per sale after first 6 sales
   const commissionPerSale = 150 // £150 per sale from sale 7 onwards
@@ -190,13 +190,13 @@ const Advisor = () => {
                 
                 <div>
                   <label className="block text-sm font-medium text-text-dark mb-2">
-                    Average Sales per Demo: {salesPerDemo}
+                    Total Sales per Month: {salesPerDemo}
                   </label>
                   <input
                     type="range"
-                    min="0.5"
-                    max="3"
-                    step="0.5"
+                    min="1"
+                    max="10"
+                    step="1"
                     value={salesPerDemo}
                     onChange={(e) => setSalesPerDemo(e.target.value)}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-green"
@@ -218,7 +218,7 @@ const Advisor = () => {
                 
                 <div className="border-t pt-4 space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-text-gray">Base Commission ({monthlyUnits.toFixed(1)} × £150):</span>
+                    <span className="text-text-gray">Base Commission ({monthlyUnits} × £150):</span>
                     <span className="font-semibold text-text-dark">£{baseCommission.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between text-sm">
